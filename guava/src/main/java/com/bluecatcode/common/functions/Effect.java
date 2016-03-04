@@ -1,8 +1,8 @@
-package com.bluecatcode.common.base;
+package com.bluecatcode.common.functions;
 
 /**
- * @see com.bluecatcode.common.base.Block
- * @see com.bluecatcode.common.base.Consumer
+ * @see Block
+ * @see Consumer
  * @see com.google.common.base.Function
  * @see com.google.common.base.Predicate
  * @see com.google.common.base.Supplier

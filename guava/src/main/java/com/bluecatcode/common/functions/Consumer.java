@@ -1,4 +1,4 @@
-package com.bluecatcode.common.base;
+package com.bluecatcode.common.functions;
 
 /**
  * Represents an operation that accepts a single input argument and returns no result.
@@ -6,8 +6,8 @@ package com.bluecatcode.common.base;
  *
  * @see <a href="http://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html">Interface Consumer</a>
  *
- * @see com.bluecatcode.common.base.Block
- * @see com.bluecatcode.common.base.Effect
+ * @see Block
+ * @see Effect
  * @see com.google.common.base.Function
  * @see com.google.common.base.Predicate
  * @see com.google.common.base.Supplier

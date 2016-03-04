@@ -4,12 +4,12 @@ import com.bluecatcode.common.contract.errors.ContractViolation
 import com.bluecatcode.common.contract.errors.EnsureViolation
 import com.bluecatcode.common.contract.errors.ImpossibleViolation
 import com.bluecatcode.common.contract.errors.RequireViolation
-import com.bluecatcode.core.exceptions.CheckedException
-import com.bluecatcode.core.exceptions.UncheckedException
+import com.bluecatcode.common.exceptions.CheckedException
+import com.bluecatcode.common.exceptions.UncheckedException
 import spock.lang.Specification
 import spock.lang.Unroll
 
-import static com.bluecatcode.common.base.Exceptions.*
+import static com.bluecatcode.common.exceptions.Exceptions.*
 
 class ThrowableConstructorSpec extends Specification {
 

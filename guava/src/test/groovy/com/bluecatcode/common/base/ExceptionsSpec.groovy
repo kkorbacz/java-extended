@@ -1,10 +1,11 @@
 package com.bluecatcode.common.base
 
+import com.bluecatcode.common.functions.CheckedFunction
 import spock.lang.FailsWith
 import spock.lang.Specification
 import spock.lang.Unroll
 
-import static com.bluecatcode.common.base.Exceptions.*
+import static com.bluecatcode.common.exceptions.Exceptions.*
 
 class ExceptionsSpec extends Specification {
 

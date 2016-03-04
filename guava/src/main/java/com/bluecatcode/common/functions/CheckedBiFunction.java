@@ -1,4 +1,4 @@
-package com.bluecatcode.common.base;
+package com.bluecatcode.common.functions;
 
 import javax.annotation.Nullable;
 
@@ -14,6 +14,7 @@ public interface CheckedBiFunction<A, B, T, E extends Exception> {
      *
      * @throws NullPointerException if {@code first} or {@code second} is null
      *                              and this function does not accept null arguments
+     * @throws E                    if unable to compute
      */
     @Nullable
     T apply(@Nullable A first, @Nullable B second) throws E;

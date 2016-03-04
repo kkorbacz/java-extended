@@ -1,7 +1,6 @@
-package com.bluecatcode.common.base;
+package com.bluecatcode.common.functions;
 
 /**
- * @param <T> the result type
  * @see java.util.concurrent.Callable
  * @see Consumer
  * @see Effect
@@ -9,12 +8,12 @@ package com.bluecatcode.common.base;
  * @see com.google.common.base.Predicate
  * @see com.google.common.base.Supplier
  */
-public interface CheckedBlock<T> {
+public interface Block<T> {
 
     /**
      * Performs this operation returning value.
      *
-     * @throws Exception if unable to compute
+     * @throws RuntimeException if unable to compute
      */
-    T execute() throws Exception;
+    T execute();
 }
