@@ -53,7 +53,9 @@ final class Left<L, R> extends Either<L, R> {
     @Override
     public <E extends Exception> R orThrow(Function<L, E> leftFunction) throws E {
         require(leftFunction != null, "Expected non-null leftFunction");
-        throw leftFunction.apply(left());
+        E exception = leftFunction.apply(left());
+        require(exception != null);
+        throw exception;
     }
 
     @Override

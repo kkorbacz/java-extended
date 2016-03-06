@@ -5,6 +5,9 @@ import javax.annotation.Nonnull;
 
 import static com.bluecatcode.common.contract.Postconditions.ensure;
 import static com.bluecatcode.common.contract.Preconditions.require;
+import static com.bluecatcode.common.exceptions.Exceptions.arguments;
+import static com.bluecatcode.common.exceptions.Exceptions.exception;
+import static com.bluecatcode.common.exceptions.Exceptions.parameters;
 
 public final class WrappedException extends UncheckedException {
 
@@ -18,6 +21,11 @@ public final class WrappedException extends UncheckedException {
     @CheckReturnValue
     public static WrappedException wrap(@Nonnull Exception cause) {
         return new WrappedException(cause);
+    }
+
+    @CheckReturnValue
+    public static <E extends Exception> E wrap(@Nonnull Exception cause, Class<E> type) {
+        return exception(type, parameters(Throwable.class), arguments(cause));
     }
 
     @CheckReturnValue

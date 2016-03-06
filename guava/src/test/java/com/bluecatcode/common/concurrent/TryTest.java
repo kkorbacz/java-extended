@@ -1,7 +1,9 @@
 package com.bluecatcode.common.concurrent;
 
 import com.bluecatcode.common.base.Either;
+import com.bluecatcode.common.exceptions.VoidException;
 import com.bluecatcode.common.exceptions.WrappedException;
+import com.bluecatcode.common.functions.CheckedFunction;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -72,17 +74,50 @@ public class TryTest {
     }
 
     @Test
-    public void testName() throws Exception {
-        Closeable closeable = () -> {};
-        Either<WrappedException, String> either = with(closeable, String.class, RuntimeException.class)
-                .limit(1, TimeUnit.MINUTES).tryA(c -> "test");
+    public void testName() {
+        Closeable closeable = () -> {
+        };
+
+        String result = with(closeable, String.class)
+                .rethrow(RuntimeException.class)
+                .limit(1, TimeUnit.MINUTES)
+                .tryA(c -> "test");
+
+        Either<WrappedException, String> either = with(closeable, String.class)
+                .rethrow(RuntimeException.class)
+                .limit(1, TimeUnit.MINUTES)
+                .either(c -> "test");
 
         try {
-            with(closeable, IOException.class).limit(1, TimeUnit.MINUTES).tryA(c -> {
-                throw new IOException();
-            });
+            with(closeable, String.class)
+                    .rethrow(IOException.class)
+                    .limit(1, TimeUnit.MINUTES)
+                    .tryA(c -> {
+                        throw new IOException();
+                    });
         } catch (IOException e) {
             e.printStackTrace();
+        }
+
+        with(closeable, String.class)
+                .swallow()
+                .limit(1, TimeUnit.MINUTES)
+                .tryA(c -> {
+                    throw new IOException();
+                });
+
+        exception.expect(WrappedException.class);
+
+        try {
+            with(closeable, String.class)
+                    .wrap()
+//                    .limit(1, TimeUnit.MINUTES)
+                    .tryA(c -> {
+                        throw new IOException();
+                    });
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw e;
         }
     }
 
@@ -173,9 +208,8 @@ public class TryTest {
         void accept(T input) throws E1, E2, E3, E4, E5;
     }
 
-    public static class VoidException extends RuntimeException {
-        private VoidException() {
-            throw new UnsupportedOperationException();
-        }
+    public enum Unit {
+        INSTANCE
     }
+
 }

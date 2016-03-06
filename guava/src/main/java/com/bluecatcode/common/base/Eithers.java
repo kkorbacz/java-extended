@@ -21,7 +21,7 @@ public class Eithers {
         return input -> {
             try {
                 R reference = function.apply(input);
-                ensure(reference == null, "Expected function to return non-null reference");
+                ensure(reference != null, "Expected function to return non-null reference");
                 return Either.valueOf(reference);
             } catch (Exception e) {
                 return Either.errorOf(wrap(e));
@@ -33,7 +33,7 @@ public class Eithers {
         require(block != null, "Expected non-null block");
         try {
             R reference = block.execute();
-            ensure(reference == null, "Expected block to return non-null reference");
+            ensure(reference != null, "Expected block to return non-null reference");
             return Either.valueOf(reference);
         } catch (Exception e) {
             return Either.errorOf(wrap(e));
